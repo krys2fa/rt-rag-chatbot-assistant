@@ -2,6 +2,11 @@
 
 This project is a Retrieval-Augmented Generation (RAG) chatbot assistant that answers questions based on your custom document set. It uses LangChain, ChromaDB for vector storage, HuggingFace embeddings, and Groq LLM for generating responses. The app features an interactive Streamlit UI.
 
+
+![RAG Chatbot Demo](./screenshots/Screenshot%202025-06-15%20181142.png)
+
+![Chatbot UI Screenshot](./screenshots/Screenshot%202025-06-15%20181222.png)
+
 ## Features
 
 - Loads and splits your documents from the `data/` folder
