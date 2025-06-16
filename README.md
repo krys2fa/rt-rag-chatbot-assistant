@@ -1,67 +1,77 @@
-# RAG-powered Chatbot Assistant
+# Ghana Investment Insights Portal
 
-This project is a Retrieval-Augmented Generation (RAG) chatbot assistant that answers questions based on your custom document set. It uses LangChain, ChromaDB for vector storage, HuggingFace embeddings, and Groq LLM for generating responses. The app features an interactive Streamlit UI.
+This portal helps investors, analysts, and policymakers explore Ghana's economic landscape using official Bank of Ghana reports. Ask about sector performance, macroeconomic indicators, or regulatory changes. All answers are grounded in the latest uploaded report.
 
+---
 
-![RAG Chatbot Demo](./screenshots/Screenshot%202025-06-15%20181142.png)
+## Screenshots
 
-![Chatbot UI Screenshot](./screenshots/Screenshot%202025-06-15%20181222.png)
+![Portal Home](screenshots/portal_home.png)
+
+![Sample Q&A](screenshots/sample_qa.png)
+
+---
 
 ## Features
 
-- Loads and splits your documents from the `data/` folder
-- Embeds and stores them in a persistent ChromaDB vector store
-- Retrieves relevant context for user queries
-- Uses a Groq LLM with a robust system prompt for safe, context-aware answers
-- Interactive web UI with Streamlit
+- Upload and analyze official Bank of Ghana PDF reports
+- Ask questions about Ghana's economy, sectors, or regulations
+- Get answers grounded in real, up-to-date data
+- Clean, business-focused web interface (Streamlit)
+- Persistent vector search with ChromaDB
+
+---
 
 ## Project Structure
 
 ```
 RAGchatbot/
-├── app.py                # Streamlit UI entry point
+├── app.py                # Streamlit UI (Ghana Investment Insights Portal)
 ├── requirements.txt      # Python dependencies
 ├── .env                  # For your GROQ_API_KEY
-├── data/                 # Place your custom documents here (JSON format)
+├── data/                 # Place your Bank of Ghana PDF here
+├── screenshots/          # App screenshots
 ├── src/
-│   ├── main.py           # Core RAG pipeline logic
-│   ├── prompts.py        # System prompt for the assistant
+│   ├── main.py           # Core pipeline: PDF ingestion, embedding, retrieval
 ```
+
+---
 
 ## Installation
 
 1. **Clone the repository**
 2. **Install dependencies**:
-   ```powershell
+   ```bash
    pip install -r requirements.txt
    ```
 3. **Set up your environment**:
-   - Create a `.env` file in the project root with your Groq API key:
+   - Copy `.env_example` to `.env` and add your Groq API key:
      ```env
      GROQ_API_KEY=your-groq-api-key-here
      ```
-   - Place your custom documents (JSON) in the `data/` folder.
+   - Place your Bank of Ghana PDF in the `data/` folder (e.g., `Summary-of-Economic-and-Financial-Data-May-2025.pdf`).
 
-## Running the App
-
-Start the Streamlit UI:
-
-```powershell
-streamlit run app.py
-```
-
-Visit the local URL shown in your terminal to interact with the chatbot.
+---
 
 ## Usage
 
-- Enter your question in the input box and click "Ask".
-- The assistant will answer using only the information from your documents.
-- Chat history is displayed for your session.
+Start the portal:
 
-## Notes
+```bash
+streamlit run app.py
+```
 
-- The first run will embed and store your documents in ChromaDB. Subsequent runs will reuse the existing vector store.
-- To update the knowledge base, add new documents to the `data/` directory.
+Open the local URL in your browser. Type your question and click "Get Insights". The portal will answer using only the uploaded Bank of Ghana report.
+
+---
+
+## Example Questions
+
+- What sectors are growing fastest in Ghana?
+- What is the current inflation rate?
+- What are the latest trends in the banking sector?
+
+---
 
 ## License
 
