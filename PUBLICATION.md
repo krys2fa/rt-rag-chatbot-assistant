@@ -10,18 +10,32 @@ Investors and policymakers need timely, reliable insights to make informed decis
 
 ## Methodology
 
-- **PDF Ingestion:** A [Bank of Ghana (Ghana's central bank) PDF report](https://www.bog.gov.gh/wp-content/uploads/2025/05/Summary-of-Economic-and-Financial-Data-May-2025.pdf) is uploaded into the data/ folder. The system extracts and splits the text into manageable chunks.
-- **Embedding & Vector Storage:** Each chunk is embedded using HuggingFace's MiniLM model and stored in ChromaDB for fast retrieval.
-- **Retrieval & Prompting:** User queries are embedded and matched to the most relevant chunks. The context is combined with a business-focused system prompt and sent to Groq LLM for answer generation.
-- **User Interface:** The Streamlit UI is styled as a business portal with the layout tailored for professional users.
+### Tools, Frameworks, and Libraries
+
+- **Python 3.10+**: The primary programming language for the project.
+- **Streamlit**: Used to build a clean, interactive, and business-focused web interface for user interaction.
+- **PyPDF2**: For extracting text from PDF reports.
+- **LangChain**: Provides the pipeline for text chunking, embedding, and retrieval.
+- **ChromaDB**: A persistent vector database for storing and searching document embeddings efficiently.
+- **HuggingFace Transformers & Sentence Transformers**: Used for generating dense vector embeddings of text chunks. Specifically, the `sentence-transformers/all-MiniLM-L6-v2` model was chosen for its balance of speed, accuracy, and resource efficiency in semantic search tasks.
+- **Groq LLM (Llama 3.1-8b-instant)**: The large language model used for generating answers. Chosen for its strong performance, cost-effectiveness, and ability to follow custom system prompts.
+- **python-dotenv**: For secure management of API keys and environment variables.
+
+### Implementation Process
+
+- **PDF Ingestion:** A [Bank of Ghana (Ghana's central bank) PDF report](https://www.bog.gov.gh/wp-content/uploads/2025/05/Summary-of-Economic-and-Financial-Data-May-2025.pdf) is uploaded into the data/ folder. The system uses PyPDF2 to extract and concatenate text from all pages.
+- **Text Chunking:** The extracted text is split into overlapping chunks using LangChain's `RecursiveCharacterTextSplitter` (chunk size: 1000, overlap: 200) to preserve context and improve retrieval accuracy.
+- **Embedding & Vector Storage:** Each chunk is embedded using HuggingFace's MiniLM model (`all-MiniLM-L6-v2`) and stored in ChromaDB. This enables fast, semantic similarity search for user queries.
+- **Retrieval & Prompting:** When a user submits a question, it is embedded and compared to all stored chunks. The top-k most relevant chunks are retrieved. These are combined with a business-focused system prompt and sent to Groq LLM (Llama 3.1-8b-instant) for answer generation. The prompt ensures the LLM only uses information from the uploaded report and responds in a clear, professional style.
+- **User Interface:** The Streamlit UI is styled as a business portal, with branding, color, and layout tailored for professional users. Users can type questions, view answers, and see a history of their queries and responses.
 
 ---
 
 ## Screenshots
 
-![Portal Home](screenshots/portal_home.png)
+![Portal Home](https://raw.githubusercontent.com/krys2fa/rt-rag-chatbot-assistant/main/screenshots/portal_home.png)
 
-![Sample Q&A](screenshots/sample_qa.png)
+![Sample Q&A](https://raw.githubusercontent.com/krys2fa/rt-rag-chatbot-assistant/main/screenshots/sample_qa.png)
 
 ---
 
@@ -66,7 +80,7 @@ RAGchatbot/
    pip install -r requirements.txt
    ```
 3. **Set up your environment**:
-   - Copy `.env_example` to `.env` and add your Groq API key:
+   - Copy `.env.example` to `.env` and add your Groq API key:
      ```env
      GROQ_API_KEY=your-groq-api-key-here
      ```
