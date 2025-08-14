@@ -10,6 +10,10 @@ This portal helps investors, analysts, and policymakers explore Ghana's economic
 
 ![Sample Q&A](screenshots/sample_qa.png)
 
+## Demo
+
+Live Link: https://ghana-investment-insights.streamlit.app/
+
 ---
 
 ## Features

@@ -57,6 +57,12 @@ Investors and policymakers need timely, reliable insights to make informed decis
 
 ---
 
+## Demo
+
+Live Link: https://ghana-investment-insights.streamlit.app/
+
+---
+
 ## Project Structure
 
 ```
