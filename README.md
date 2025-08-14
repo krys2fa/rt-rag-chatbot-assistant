@@ -55,6 +55,8 @@ RAGchatbot/
 
 ## Usage
 
+### Local Development
+
 Start the portal:
 
 ```bash
@@ -62,6 +64,17 @@ streamlit run app.py
 ```
 
 Open the local URL in your browser. Type your question and click "Get Insights". The portal will answer using only the uploaded Bank of Ghana report.
+
+### Cloud Deployment
+
+This app is ready for deployment on Streamlit Cloud:
+
+1. **Push to GitHub** with your code (excluding `.env`)
+2. **Connect to Streamlit Cloud** at https://share.streamlit.io/
+3. **Add your GROQ_API_KEY** in the Streamlit Cloud secrets manager
+4. **Deploy** - the app includes `runtime.txt` and sqlite compatibility fixes for Cloud
+
+**Note**: The app includes automatic sqlite3 compatibility handling for Streamlit Cloud's managed environment.
 
 ---
 

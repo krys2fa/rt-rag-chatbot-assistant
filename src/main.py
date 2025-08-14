@@ -1,3 +1,15 @@
+# Ensure modern SQLite (>=3.35) for Chroma on managed platforms (e.g., Streamlit Cloud)
+import sys
+try:
+    # Try to import pysqlite3 and replace sqlite3 module
+    import pysqlite3 as sqlite3  # type: ignore
+    sys.modules["sqlite3"] = sqlite3
+    print("[INFO] Using pysqlite3 as sqlite3 replacement for Chroma compatibility")
+except ImportError:
+    # Fall back to system sqlite3 if pysqlite3 is unavailable
+    print("[INFO] Using system sqlite3")
+    pass
+
 import chromadb
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_huggingface import HuggingFaceEmbeddings
